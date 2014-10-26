@@ -16,9 +16,12 @@ function replacer(match, p1, p2, p3, offset, string){
 $(document).ready(function() {
   
   var url = window.location.href;
+  
+  // rewrite the current url by stipping its version number
   var newURL = url.replace(/^(http:\/\/hackage\.haskell\.org\/package\/)([-\w]+)[\d.]+(\/docs\/.*)/, replacer);
   //console.log("URL of current docs: " + newURL);
   
+  // new item for the nav bar
   var newLink = $('<li>').append(
      $('<a>', {
          title: 'Current Docs',
@@ -26,7 +29,8 @@ $(document).ready(function() {
          href:  newURL
      }).css('color', 'rgb(244, 113, 45)')
   );
-
+  
+  // #page-menu is the top-level navagation bar on docs pages
   $('#page-menu').prepend(newLink);
 
 });
